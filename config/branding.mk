@@ -1,5 +1,6 @@
 # Set all versions
-QASSA_BUILD_CODENAME := Sisu
+QASSA_BUILD_CODENAME := ubuntu22
+QASSA_MAINTAINER := ziachi
 QASSA_VERSION_NUMBER := v2.4_0.s
 
 # byNgantu (official)
@@ -15,10 +16,13 @@ QASSA_BUILD_DATE := $(QASSA_DATE_YEAR)$(QASSA_DATE_MONTH)$(QASSA_DATE_DAY)-$(QAS
 
 TARGET_PRODUCT_SHORT := $(subst qassa_,,$(QASSA_BUILD))
 
+# The zip name is the ROM's identity, so it is spelled out instead of being
+# assembled from the version number and the build type. The build date is not
+# part of it, so a new build overwrites the previous zip.
 ifeq ($(WITH_GAPPS), true)
-QASSA_VERSION := qassa_$(QASSA_BUILD_CODENAME)-$(QASSA_VERSION_NUMBER)-$(QASSA_BUILD_TYPE)-$(QASSA_BUILD)-$(QASSA_BUILD_DATE)-GApps-signed
+QASSA_VERSION := qassa_$(QASSA_BUILD_CODENAME)-$(QASSA_MAINTAINER)-$(QASSA_BUILD)-GApps
 else
-QASSA_VERSION := qassa_$(QASSA_BUILD_CODENAME)-$(QASSA_VERSION_NUMBER)-$(QASSA_BUILD_TYPE)-$(QASSA_BUILD)-$(QASSA_BUILD_DATE)-Vanilla-signed
+QASSA_VERSION := qassa_$(QASSA_BUILD_CODENAME)-$(QASSA_MAINTAINER)-$(QASSA_BUILD)
 endif
 QASSA_VERSION_PROP := Q
 
